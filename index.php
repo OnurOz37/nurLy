@@ -15,7 +15,7 @@
 
         while($result = $request->fetch()){
             if($result['x'] != 1){
-                header('location:../?error=true&message=Adresse url non connue');
+                header('location:./?error=true&message=Adresse url non connue');
                 exit();
             }
         }
@@ -34,7 +34,7 @@
         //Verification si c'est bien une adresse valide (url)
         if(!filter_var($url, FILTER_VALIDATE_URL)){
             //Pas un lien
-            header('location:../?error=true&message=Adresse url non valide');
+            header('location:./?error=true&message=Adresse url non valide');
             exit();
         }
 
@@ -55,7 +55,7 @@
         while($result = $request->fetch()){
             if($result['x'] !=0){
 //                header('location./index.php?error=true&message=Adresse déjà raccourci !');
-                header('location:../?error=true&message=Adresse déjà raccourci !');
+                header('location:./?error=true&message=Adresse déjà raccourci !');
                 exit();
             }
         }
@@ -64,7 +64,7 @@
         $addToDb = $database->prepare('INSERT INTO links(url, shortcut) VALUES(?, ?)' );
         $addToDb->execute(array($url, $shortcut));
 
-        header('location:../?short='.$shortcut);
+        header('location:./?short='.$shortcut);
         exit();
 
         
@@ -104,7 +104,7 @@
         <h2>Largement meilleur et plus court que les autres.</h2>
 
         <!--FORM-->
-    <form method="post" action="../">
+    <form method="post" action="./">
         <input type="url" name="url" placeholder="Collez un lien a raccourcir">
         <input type="submit" value="Raccourcir">
     </form>
@@ -119,7 +119,7 @@
     <?php } else if(isset($_GET['short'])){?>
         <div class="center">
             <div id="result">
-                <b>URL RACCOURCI : http://localhost/?q=<?php echo htmlspecialchars($_GET['short']);?></b>
+                <b>URL RACCOURCI : http://localhost/nurLy/?q=<?php echo htmlspecialchars($_GET['short']);?></b>
             </div>
         </div>
     <?php } ?>
