@@ -1,7 +1,7 @@
-<!--Sending a Form-->
+
 <?php
 
-    //Receive the shortcut
+    //Recevoir le raccourci
     if(isset($_GET['q'])){
 
         //Variable
@@ -42,7 +42,7 @@
 
         $shortcut = crypt($url,rand());
 
-        //Has been already sent
+        //Si c'est un lien déjà envoyé
         try {
             $database= new PDO('mysql:host=localhost;dbname=nurly;charset=utf8', "root", '');
         } catch(PDOException $error){
@@ -60,7 +60,7 @@
             }
         }
 
-        //Sending
+        //Envoie
         $addToDb = $database->prepare('INSERT INTO links(url, shortcut) VALUES(?, ?)' );
         $addToDb->execute(array($url, $shortcut));
 
@@ -80,7 +80,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="design/default.css">
     <link rel="icon" type="image/png" href="pictures/favico.png">
@@ -108,6 +108,7 @@
         <input type="url" name="url" placeholder="Collez un lien a raccourcir">
         <input type="submit" value="Raccourcir">
     </form>
+    
 
     <?php
     if(isset($_GET['error']) && isset($_GET['message'])){?>
